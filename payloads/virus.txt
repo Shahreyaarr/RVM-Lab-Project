@@ -1,0 +1,3 @@
+This is a simulated Virus payload for educational purposes only.
+No harmful code is contained in this file.
+Simulation ID: VIRUS-SIM-001

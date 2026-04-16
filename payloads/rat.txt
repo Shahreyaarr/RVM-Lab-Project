@@ -1,0 +1,3 @@
+This is a simulated RAT payload for educational purposes only.
+No harmful code is contained in this file.
+Simulation ID: RAT-SIM-001

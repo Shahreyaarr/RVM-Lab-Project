@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-cyber-bg: #020408;
+  --color-cyber-surface: #0a0c10;
+  --color-cyber-card: #12161c;
+  --color-cyber-accent: #00f2ff;
+  --color-cyber-danger: #ff3e3e;
+  --color-cyber-warning: #ffb800;
+  --color-cyber-success: #00ff94;
+  --color-cyber-border: #1e293b;
+  --color-cyber-text: #f8fafc;
+  --color-cyber-muted: #64748b;
+}
+
+@layer base {
+  body {
+    @apply bg-cyber-bg text-cyber-text font-sans antialiased selection:bg-cyber-accent/30 overflow-x-hidden;
+  }
+}
+
+@layer components {
+  /* Advanced UI Elements */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(to right, rgba(0, 242, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 242, 255, 0.02) 1px, transparent 1px);
+    background-size: 30px 30px;
+    position: relative;
+  }
+
+  .cyber-panel {
+    @apply bg-cyber-surface/40 border border-cyber-border rounded-xl shadow-2xl relative overflow-hidden backdrop-blur-xl;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cyber-panel:hover {
+    @apply border-cyber-accent/30 shadow-[0_0_30px_rgba(0,242,255,0.1)];
+  }
+
+  .cyber-panel::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyber-accent/40 to-transparent opacity-0 transition-opacity duration-500;
+  }
+
+  .cyber-panel:hover::before {
+    @apply opacity-100;
+  }
+
+  .cyber-button {
+    @apply relative px-6 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.2em] transition-all duration-300 border border-cyber-accent/20 bg-cyber-accent/5 hover:bg-cyber-accent/15 hover:border-cyber-accent text-cyber-accent overflow-hidden flex items-center justify-center gap-2 rounded-lg;
+  }
+
+  .cyber-button:active {
+    @apply scale-[0.98];
+  }
+
+  .glitch-text {
+    position: relative;
+    animation: glitch 1s infinite linear alternate-reverse;
+  }
+
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+  }
+
+  .scanline {
+    width: 100%;
+    height: 2px;
+    z-index: 100;
+    background: rgba(0, 242, 255, 0.1);
+    opacity: 0.2;
+    position: fixed;
+    top: 0;
+    pointer-events: none;
+    animation: scanline 8s linear infinite;
+  }
+
+  @keyframes scanline {
+    0% { top: 0; }
+    100% { top: 100%; }
+  }
+
+  .terminal-cursor {
+    @apply inline-block w-2 h-4 bg-cyber-accent ml-1 align-middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Bento Grid Utilities */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    gap: 1.5rem;
+  }
+
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-cyber-border rounded-full hover:bg-cyber-accent/40 transition-colors;
+  }
+}

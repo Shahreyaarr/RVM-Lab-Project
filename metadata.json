@@ -1,0 +1,6 @@
+{
+  "name": "Malware Simulation Lab",
+  "description": "Advanced Cybersecurity Operations Center (CSOC) Simulation Environment. A high-fidelity, educational platform for analyzing malware behavior and threat propagation patterns.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
